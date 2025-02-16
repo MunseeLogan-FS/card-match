@@ -3,17 +3,103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
     <title>New TypeScript/SCSS Project</title>
   </head>
   <body>
     <main>
       <section>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
+        <div>
+          <h3>Card Match</h3>
+          <p>
+            Use the three attempts you have to try and find the the matching
+            pairs.
+          </p>
+        </div>
+        <div>
+          <h3 id="attempts">Attempts left: 3</h3>
+        </div>
+      </section>
+      <section>
+        <div class="card">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <img src="./images/card.png" alt="" />
+            </div>
+            <div class="card__face card__face--back">
+              <div class="card__content">
+                <h2 class="card-value"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <img src="./images/card.png" alt="" />
+            </div>
+            <div class="card__face card__face--back">
+              <div class="card__content">
+                <h2 class="card-value"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <img src="./images/card.png" alt="" />
+            </div>
+            <div class="card__face card__face--back">
+              <div class="card__content">
+                <h2 class="card-value"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <img src="./images/card.png" alt="" />
+            </div>
+            <div class="card__face card__face--back">
+              <div class="card__content">
+                <h2 class="card-value"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <img src="./images/card.png" alt="" />
+            </div>
+            <div class="card__face card__face--back">
+              <div class="card__content">
+                <h2 class="card-value"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <img src="./images/card.png" alt="" />
+            </div>
+            <div class="card__face card__face--back">
+              <div class="card__content">
+                <h2 class="card-value"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 id="gameStatus"></h3>
+        <button>Start Over</button>
       </section>
     </main>
 

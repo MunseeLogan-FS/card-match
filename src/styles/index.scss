@@ -1,18 +1,105 @@
-html {
-  background: gray;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "open sans", serif;
 }
 
+body {
+  background-color: #1c531d;
+}
 section {
-  display: flex;
-  justify-content: space-evenly;
+  margin: 0 auto;
+  padding: 10px;
 
-  .card {
+  &:first-of-type {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    width: 200px;
-    height: 300px;
-    background-color: whitesmoke;
+    justify-content: space-evenly;
+    height: 10vh;
+    width: 100%;
+    align-items: end;
+    color: whitesmoke;
+
+    div {
+      width: 25%;
+      align-self: center;
+      justify-self: end;
+      &:last-of-type {
+        text-align: end;
+      }
+    }
+  }
+  &:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 0.5fr;
+    gap: 3px;
+    justify-items: center;
+    height: 80vh;
+    width: 1200px;
+
+    .card {
+      width: 281px;
+      height: 380px;
+      perspective: 1000px;
+    }
+    .card__inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      position: relative;
+    }
+    .card__face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+    }
+    .card__face--front {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card__face--back {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      background-color: whitesmoke;
+      transform: rotateY(180deg);
+    }
+
+    .is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    h3 {
+      color: whitesmoke;
+      font-size: 3rem;
+    }
+
+    button {
+      justify-self: center;
+      grid-column: 2/3;
+      width: 40%;
+      height: 45px;
+      border: none;
+      border-radius: 5px;
+      background-color: #228ab6;
+      color: whitesmoke;
+      transition: ease-in-out 0.3s;
+      box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(0.9);
+      }
+    }
   }
 }
