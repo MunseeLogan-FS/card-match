@@ -2,41 +2,26 @@
 import "@/styles/index.scss";
 import { Cards } from "./until";
 
-const cardFlip = document.querySelectorAll(".card__inner");
+// all HTMLElements stored in varibales
+const cardFlip: NodeListOf<HTMLElement> = document.querySelectorAll(
+  ".card__inner"
+) as NodeListOf<HTMLElement>;
 const setAttemps: HTMLElement = document.querySelector(
   "#attempts"
 ) as HTMLElement;
 const gameStatus: HTMLElement = document.querySelector(
   "#gameStatus"
 ) as HTMLElement;
-const btn = document.querySelector("button");
+const btn: HTMLElement = document.querySelector("button") as HTMLElement;
 
+// all reasignable varibales here
 let firstCard: HTMLElement | null = null;
 let secondCard: HTMLElement | null = null;
 let isProcessing: boolean = false;
 let attemptCount: number = 3;
 let matchCount: number = 0;
 
-cardFlip.forEach((element) => {
-  element.addEventListener("click", () => {
-    if (isProcessing || element.classList.contains("is-flipped")) return;
-
-    element.classList.add("is-flipped");
-
-    if (!firstCard) {
-      firstCard = element as HTMLElement;
-    } else if (!secondCard) {
-      secondCard = element as HTMLElement;
-      isProcessing = true;
-      matchCards();
-    }
-  });
-});
-
-btn?.addEventListener("click", () => {
-  startOver();
-});
-
+// class for making the cards
 class Card {
   value: Cards;
   str: string;
@@ -46,14 +31,7 @@ class Card {
   }
 }
 
-const getRandomCard = (): Cards => {
-  const cardValues = Object.values(Cards).filter(
-    (value) => typeof value === "number"
-  ) as Cards[];
-  const randomValue = cardValues[Math.floor(Math.random() * cardValues.length)];
-  return randomValue as Cards;
-};
-
+// display cards makees new cards and shuffles them before putting them on the board
 const displayCards = () => {
   let i = 0;
 
@@ -79,6 +57,16 @@ const displayCards = () => {
   }
 };
 
+// get random card is used by displayCards to make random cards each time
+const getRandomCard = (): Cards => {
+  const cardValues = Object.values(Cards).filter(
+    (value) => typeof value === "number"
+  ) as Cards[];
+  const randomValue = cardValues[Math.floor(Math.random() * cardValues.length)];
+  return randomValue as Cards;
+};
+
+// match cards is called by an eventlistener to check if the Text in the two cards is the same therefore making match or turning the cards back over
 const matchCards = () => {
   if (firstCard && secondCard) {
     const firstCardValue = (
@@ -120,6 +108,7 @@ const matchCards = () => {
   }
 };
 
+// game over is called after to many attempts or if the user guessing two matching pairs making them a winner
 const gameOver = () => {
   isProcessing = true;
 
@@ -133,12 +122,13 @@ const gameOver = () => {
   });
 };
 
+// called by the start over btn eventlistener to reset the game
 const startOver = () => {
   attemptCount = 3;
   matchCount = 0;
   firstCard = null;
   secondCard = null;
-  isProcessing = false;
+
   gameStatus.innerText = "";
   setAttemps.innerHTML = `Attempts left: ${attemptCount}`;
   cardFlip.forEach((element) => {
@@ -147,6 +137,31 @@ const startOver = () => {
   setTimeout(() => {
     displayCards();
   }, 400);
+  isProcessing = false;
 };
 
-displayCards();
+(() => {
+  // call display cards to make the page
+  displayCards();
+
+  // addEventListeners to for the game
+  cardFlip.forEach((element) => {
+    element.addEventListener("click", () => {
+      if (isProcessing || element.classList.contains("is-flipped")) return;
+
+      element.classList.add("is-flipped");
+
+      if (!firstCard) {
+        firstCard = element as HTMLElement;
+      } else if (!secondCard) {
+        secondCard = element as HTMLElement;
+        isProcessing = true;
+        matchCards();
+      }
+    });
+  });
+
+  btn?.addEventListener("click", () => {
+    startOver();
+  });
+})();
