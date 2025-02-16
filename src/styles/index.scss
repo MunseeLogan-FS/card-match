@@ -8,9 +8,16 @@
 body {
   background-color: #1c531d;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 section {
-  margin: 0 auto;
-  padding: 10px;
+  margin: 1rem;
 
   &:first-of-type {
     display: flex;
@@ -27,20 +34,29 @@ section {
       &:last-of-type {
         text-align: end;
       }
+      @media (max-width: 768px) {
+        width: 45%;
+        font-size: 0.9rem;
+      }
     }
   }
   &:nth-of-type(2) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 0.5fr;
-    gap: 3px;
+    grid-auto-rows: minmax(auto, 1fr);
+    gap: 7px;
     justify-items: center;
     height: 80vh;
-    width: 1200px;
+    width: 90vw;
+    max-width: 1200px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
 
     .card {
-      width: 281px;
-      height: 380px;
+      height: 98%;
+      aspect-ratio: 1/1.35;
       perspective: 1000px;
     }
     .card__inner {
@@ -57,20 +73,28 @@ section {
       height: 100%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      overflow: hidden;
+      // overflow: hidden;
       border-radius: 16px;
+
       box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
     }
     .card__face--front {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      img {
+        // the image would not fill the whole container without this
+        width: 103%;
+        height: 103%;
+
+        object-fit: fill;
+      }
     }
     .card__face--back {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 4rem;
+      font-size: 6vmin;
       background-color: whitesmoke;
       transform: rotateY(180deg);
     }
@@ -81,7 +105,7 @@ section {
 
     h3 {
       color: whitesmoke;
-      font-size: 3rem;
+      font-size: 5vmin;
     }
 
     button {
