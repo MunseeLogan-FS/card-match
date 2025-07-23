@@ -82,7 +82,7 @@ const matchCards = () => {
       secondCard = null;
       isProcessing = false;
       matchCount++;
-      attemptCount--;
+      // attemptCount--;
       setAttemps.innerHTML = `Attempts left: ${attemptCount}`;
       if (matchCount > 1 || attemptCount === 0) {
         gameOver();
